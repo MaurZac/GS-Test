@@ -1,0 +1,59 @@
+<input class="form-control mr-sm-4 mt-4 mb-4" 
+               type="text" 
+               placeholder="Buscar"
+               [(ngModel)]="findgroup"
+               name="findgroup">
+<div class="example-container">
+  <h2>Grupos</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="groups"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let item of groups | filter:findgroup" cdkDrag>{{item.name}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Listas</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop($event)"
+    
+    >
+    <div class="example-box" onchange="getListas(item.id)" (click)="getListas(item.id)" *ngFor="let item of done" cdkDrag>{{item.name}} {{item.id}}</div>
+  </div>
+
+  <br>
+  <button mat-button>Continuar</button>
+</div>
+
+
+  
+<!-- 
+<div class="row">
+
+    <div class="col-6 around mt-4 scrull">
+        <input class="form-control mr-sm-4 mt-4 mb-4" 
+               type="text" 
+               placeholder="Buscar"
+               [(ngModel)]="findgroup"
+               name="findgroup">
+        <div class="card m-4 scrull1" id="div1" ondrop="drop(event)" ondragover="allowDrop(event)" *ngFor="let gr of groups | filter:findgroup">
+        <div class="card-header" draggable="true" ondragstart="drag(event)" id="drag1">
+                  {{gr.name}}
+        </div>
+        </div>
+    </div>
+    <div class="col-6 around mt-4 scrull" ondrop="drop(event)" ondragover="allowDrop(event)">
+        
+    </div>
+</div> -->

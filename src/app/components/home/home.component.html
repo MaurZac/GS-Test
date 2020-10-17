@@ -1,0 +1,36 @@
+
+    <input class="form-control mr-sm-4 mt-2" 
+    type="text" 
+    placeholder="Search by name" 
+    aria-label="Search"
+    [(ngModel)]="findEmpl"
+    name="findEmpl">
+  
+<table class="table mt-1">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Birthday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emplo of newEmployees | filter:findEmpl | paginate: { itemsPerPage: 10, currentPage:page}">
+        <th scope="row">{{emplo.id}}</th>
+        <td>{{emplo.name}}</td>
+        <td>{{emplo.last_name}}</td>
+        <td>{{emplo.birthday}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls 
+   (pageChange)="page = $event"
+   previousLabel = "Before"
+   nextLabel="Next">
+
+  </pagination-controls>
+  
+ 
+     
+  
